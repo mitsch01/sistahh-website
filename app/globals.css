@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('/fonts/Avenir Medium.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: url('/fonts/LeagueSpartan-Bold.otf') format('otf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: 'AvenirMedium', sans-serif; 
+}
+
+h1, h2, h3 {
+  font-family: 'LeagueSpartan', sans-serif; 
+}
