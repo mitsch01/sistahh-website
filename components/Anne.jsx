@@ -33,11 +33,11 @@ export default function Anne() {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <section id='anne' className='pt-36 mb-16'>
-      <h1 className='text-4xl mb-12 mt-24 font-bold text-center bg-heading-gradient bg-clip-text text-transparent'>Unsere Oberschwester</h1>
+    <section id='anne' className='pt-24 mb-16 mx-10'>
+      <h1 className='text-4xl mb-12 font-bold text-center bg-heading-gradient bg-clip-text text-transparent'>Unsere Oberschwester</h1>
       <div className='container grid grid-cols-1 md:grid-cols-2 gap-8'>
-        <div className='left-column'>
-          <img src='https://sistahh.de/wp-content/uploads/2022/11/Anne-2-scaled.jpeg' alt='Anne' className='image w-full h-auto' />
+        <div className='left-column overflow-hidden'>
+          <img src='/images/Anne_Prinzenbar.jpg' alt='Anne' className='image w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110 hover:-rotate-3' />
         </div>
         <div className='right-column'>
           {anneContent.map((paragraph, index) => (

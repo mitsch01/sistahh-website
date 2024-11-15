@@ -64,17 +64,17 @@ export default function Page() {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <section id='concerts' className='pt-36'>
+    <section id='concerts' className='pt-36 mx-8'>
       {/* Upcoming Concerts Section */}
       <h1 className='text-4xl mb-12 font-bold text-center bg-heading-gradient bg-clip-text text-transparent'>Concerts</h1>
       <div className='mb-24 max-w-[860px] mx-auto text-left'>
         {upcomingConcerts.length > 0 ? (
-          <div className='mb-4 p-4 border-b-[1px] border-white flex justify-between'>
+          <div className='mb-4 py-4 border-b-[0.5px] border-white flex justify-between'>
             {upcomingConcerts.map(concert => (
               <React.Fragment key={concert.id}>
                 {/* Column 1: Date & Time */}
                 <div>
-                  <p>
+                  <p className='text-sm sm:text-base'>
                     {/* Format the date */}
                     {new Date(concert.datum).toLocaleDateString("de-DE", {
                       weekday: "long",
@@ -83,7 +83,7 @@ export default function Page() {
                       day: "numeric"
                     })}
                   </p>
-                  <p>
+                  <p className='text-sm sm:text-base'>
                     {/* Format the time */}
                     {concert.time
                       ? new Date(`1970-01-01T${concert.time}Z`).toLocaleTimeString("de-DE", {
@@ -98,14 +98,14 @@ export default function Page() {
 
                 {/* Column 2: City & Location */}
                 <div>
-                  <p>{concert.location}</p>
-                  <p>{concert.stadt}</p>
+                  <p className='text-sm sm:text-base'>{concert.location}</p>
+                  <p className='text-sm sm:text-base'>{concert.stadt}</p>
                 </div>
 
                 {/* Column 3: Ticket Button */}
                 <div className='flex items-center'>
                   {concert.link ? (
-                    <button className='bg-white px-4 py-2 text-black rounded hover:bg-gray-200'>
+                    <button className='bg-white px-4 py-2 text-black rounded hover:bg-button-gradient'>
                       <a href={concert.link} target='_blank' rel='noopener noreferrer'>
                         Tickets
                       </a>
@@ -118,19 +118,31 @@ export default function Page() {
             ))}
           </div>
         ) : (
-          <p className='text-center'>Die nächsten Konzerte sind schon in Planung.</p>
+          <div className='flex items-center flex-col text-center'>
+            <p>
+              Weitere Konzerte sind in Planung – folgt uns auf{" "}
+              <a href='https://www.instagram.com/sista.hh/' target='_blank' rel='noopener noreferrer' className='underline'>
+                Instagram
+              </a>
+              !{" "}
+            </p>
+            <p>Wir sind ebenfalls offen für neue Gigs. Schreibt uns gern:</p>
+            <button className='bg-white px-4 py-2 mt-8 text-black rounded hover:bg-button-gradient'>
+              <a href='/contact'>Anfrage senden</a>
+            </button>
+          </div>
         )}
       </div>
 
       {/* Past Concerts Section */}
-      <h2 className='text-2xl mb-4 font-bold text-center text-[#363636]'>Past Dates</h2>
-      <div className='mb-24 max-w-[860px] mx-auto text-left text-[#363636]'>
+      <h2 className='text-2xl mb-4 font-bold text-center text-[#666]'>Past Dates</h2>
+      <div className='mb-24 max-w-[860px] mx-auto text-left text-[#666]'>
         {pastConcerts.length > 0 ? (
           pastConcerts.map(concert => (
-            <div key={concert.id} className='flex justify-between items-center mb-4 p-2 border-b-[1px] border-[#363636] '>
+            <div key={concert.id} className='flex justify-between items-center mb-4 py-2 border-b-[0.5px] border-[#666] '>
               {/* Column 1: Date & Time */}
               <div className='flex-1'>
-                <p>
+                <p className='text-sm sm:text-base'>
                   {new Date(concert.datum).toLocaleDateString("de-DE", {
                     weekday: "long",
                     year: "numeric",
@@ -142,8 +154,8 @@ export default function Page() {
 
               {/* Column 2: City & Location */}
               <div className='flex-1 text-right'>
-                <p>{concert.location}</p>
-                <p>{concert.stadt}</p>
+                <p className='text-sm sm:text-base'>{concert.location}</p>
+                <p className='text-sm sm:text-base'>{concert.stadt}</p>
               </div>
             </div>
           ))

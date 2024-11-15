@@ -33,9 +33,9 @@ export default function About() {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <section id='about' className='pt-36'>
+    <section id='about' className='pt-24 mx-8 max-w-[600px]'>
       <h1 className='text-4xl mb-12 font-bold text-center bg-heading-gradient bg-clip-text text-transparent'>About</h1>
-      <div className='mb-36 text-center px-6'>
+      <div className='mb-24 sm:text-center px-6'>
         {aboutContent.map((paragraph, index) => (
           <p key={index} className='mt-4'>
             {paragraph}

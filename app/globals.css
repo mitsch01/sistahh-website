@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'flowbite/dist/flowbite.css';
+
 @font-face {
   font-family: 'AvenirMedium';
   src: url('/fonts/Avenir Medium.ttf') format('ttf');
@@ -16,6 +18,10 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'AvenirMedium', sans-serif; 
 }
@@ -23,3 +29,4 @@ body {
 h1, h2, h3 {
   font-family: 'LeagueSpartan', sans-serif; 
 }
+

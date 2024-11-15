@@ -2,92 +2,78 @@
 
 import { useState, useEffect } from "react"
 import "./globals.css"
+import "@fortawesome/fontawesome-free/css/all.min.css"
 import Footer from "../components/Footer"
-import NavLink from "../components/NavLink"
-import Image from "next/image"
-
+import Header from "../components/Header"
+import Modal from "../components/Modal"
+import SocialIcons from "../components/SocialIcons"
 
 export default function RootLayout({ children }) {
-const [scrolled, setScrolled] = useState(false)
-const [rotation, setRotation] = useState(0)
+  const [scrolled, setScrolled] = useState(false)
+  const [rotation, setRotation] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(true) // Modal open on initial load
+  const [isContentBlurred, setIsContentBlurred] = useState(true) // Blur content until consent is given
+  const [consentGiven, setConsentGiven] = useState(false)
 
-useEffect(() => {
-  let lastScrollY = 0
-  let timeoutId
-
-  const handleScroll = () => {
-    if (window.scrollY > 50 && !scrolled) {
-      setScrolled(true) 
-    } else if (window.scrollY <= 50 && scrolled) {
-      setScrolled(false) 
+  // Check if the user has already interacted with the cookie consent modal
+  useEffect(() => {
+    const userConsent = localStorage.getItem("cookieConsent")
+    if (userConsent === "true") {
+      setConsentGiven(true)
+      setIsContentBlurred(false) // Remove blur after consent is given
+    } else if (userConsent === "false") {
+      setConsentGiven(false)
+      setIsContentBlurred(false) // No blur for declined consent
     }
+  }, [])
 
-    if (window.scrollY > 50) {
-      setRotation(window.scrollY / 50)
-    }
-
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => {
-      setScrolled(window.scrollY > 50)
-    }, 100)
+  // Handle modal close and user consent
+  const handleAccept = () => {
+    localStorage.setItem("cookieConsent", "true")
+    setConsentGiven(true)
+    setIsModalOpen(false)
+    setIsContentBlurred(false) // Remove blur once consent is given
   }
 
-  window.addEventListener("scroll", handleScroll)
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll)
-    clearTimeout(timeoutId)
+  // Handle cookie decline
+  const handleDecline = () => {
+    localStorage.setItem("cookieConsent", "false")
+    setConsentGiven(false)
+    setIsModalOpen(false)
+    setIsContentBlurred(false) // Remove blur even if consent is declined
   }
-}, [scrolled])
-
-
 
   return (
-    <html lang='en'>
-      <body>
-        <div className='bg-black min-h-[100dvh] grid grid-rows-[auto_1fr_auto] text-white'>
-          <header className='sticky top-0 z-50 bg-black bg-opacity-30 backdrop-blur-lg text-lg'>
-            <div className='max-w-4xl flex items-center justify-between mx-auto px-12 relative'>
-              {/* Left-side menu */}
-              <div className='flex space-x-7'>
-                <NavLink text='Home' path='/' />
-                <NavLink text='Concerts' path='/#concerts' />
+    <>
+      <html lang='en'>
+        <body>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)} // Close modal when clicked outside or Escape key is pressed
+            message='Wir nutzen YouTube auf unserer Seite und setzen einen Cookie – einverstanden?'
+            icon='fas fa-cookie-bite' // Icon class
+            acceptText='Logisch!' // Button text for accepting cookies
+            declineText='Ohne Videos.' // Button text for declining cookies
+            handleAccept={handleAccept} // Pass handleAccept function
+            handleDecline={handleDecline} // Pass handleDecline function
+          />
+
+          {/* Main content, blurred while modal is open */}
+          <div className={`${isContentBlurred ? "backdrop-blur-lg" : ""}`}>
+            <div className='relative bg-custom-pattern bg-cover bg-center min-h-screen'>
+              {/* Background Blur and Overlay */}
+              <div className='absolute inset-0 bg-black bg-opacity-90 backdrop-blur-lg'></div>
+              <div className='relative z-10 min-h-[100dvh] grid grid-rows-[auto_1fr_auto] text-white'>
+                <Header scrolled={scrolled} rotation={rotation} />
+                {/* Pass consentGiven as a prop to the children */}
+                <main>{children}</main>
+                <Footer />
               </div>
-
-              {/* Centered logo */}
-              <div className='flex justify-center flex-1'>
-                {/* First logo (static) */}
-                {!scrolled && <Image src='/images/Sistahh_Stern_All_gelb.png' alt='SISTAHH Logo' width={200} height={200} />}
-
-                {/* Second logo (rotating) when scrolled */}
-                {scrolled && (
-                  <Image
-                    src='/images/Sistahh_Stern_gelb.png'
-                    alt='SISTAHH Logo'
-                    width={100}
-                    height={100}
-                    style={{
-                      transform: `rotate(${rotation}deg)`, 
-                      transition: "transform 0.1s ease-out" 
-                    }}
-                  />
-                )}
-              </div>
-
-              {/* Right-side menu */}
-              <div className='flex space-x-7'>
-                <NavLink text='About' path='/#about' />
-                <NavLink text='Contact' path='/contact' />
-              </div>
-
-              {/* Bottom gradient effect */}
-              {!scrolled && <div className='absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent'></div>}
             </div>
-          </header>
-          <main>{children}</main>
-          <Footer />
-        </div>
-      </body>
-    </html>
+          </div>
+          <SocialIcons />
+        </body>
+      </html>
+    </>
   )
 }
