@@ -11,28 +11,6 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Define scrollToSection function
-  const scrollToSection = () => {
-    const section = document.getElementById("about")
-
-    if (section) {
-      // Get the position of the section relative to the viewport
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY
-      console.log("Section top:", sectionTop)
-
-      // Check if the device is mobile
-      const isMobile = window.innerWidth < 640 // Tailwind `sm` breakpoint
-      const offset = isMobile ? -100 : -150 // Adjust offset for mobile
-      console.log("Scrolling to position:", sectionTop + offset)
-
-      // Smoothly scroll to the adjusted position
-      window.scrollTo({
-        top: sectionTop + offset,
-        behavior: "smooth"
-      })
-    }
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
@@ -67,7 +45,7 @@ export default function Header() {
   return (
     <header className='sticky top-0 z-20 bg-black backdrop-blur-lg text-2xl'>
       <div className={`absolute left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent transition-all duration-300 ${scrolled ? "-bottom-12" : "-bottom-16"}`}></div>
-      <div className='max-w-4xl flex items-center justify-between mx-auto px-12 relative'>
+      <div className='lg:max-w-[796px] md:px-12 lg:px-0 flex items-center justify-between mx-auto relative'>
         {/* Desktop Menu */}
         <div className='hidden md:flex space-x-7 text-[0.9em]'>
           <NavLink text='Home' path='/' />
@@ -107,6 +85,7 @@ export default function Header() {
             path='/#about'
             onClick={e => {
               e.preventDefault()
+              console.log("About link clicked!")
               scrollToSection() // Call scrollToSection here
             }}
           />
