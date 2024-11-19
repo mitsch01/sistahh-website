@@ -1,15 +1,37 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import NavLink from "../components/NavLink"
 import Image from "next/image"
+import "@fortawesome/fontawesome-free/css/all.min.css"
 
-const Header = () => {
+export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [rotation, setRotation] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Define scrollToSection function
+  const scrollToSection = () => {
+    const section = document.getElementById("about")
+
+    if (section) {
+      // Get the position of the section relative to the viewport
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY
+      console.log("Section top:", sectionTop)
+
+      // Check if the device is mobile
+      const isMobile = window.innerWidth < 640 // Tailwind `sm` breakpoint
+      const offset = isMobile ? -100 : -150 // Adjust offset for mobile
+      console.log("Scrolling to position:", sectionTop + offset)
+
+      // Smoothly scroll to the adjusted position
+      window.scrollTo({
+        top: sectionTop + offset,
+        behavior: "smooth"
+      })
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,30 +60,25 @@ const Header = () => {
     }
   }, [lastScrollY, isScrolling])
 
-  useEffect(() => {
-    let intervalId
-
-    if (scrolled && isScrolling) {
-      intervalId = setInterval(() => {}, 20)
-    } else {
-      clearInterval(intervalId)
-    }
-
-    return () => clearInterval(intervalId)
-  }, [scrolled, isScrolling])
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => !prev)
+  }
 
   return (
     <header className='sticky top-0 z-20 bg-black backdrop-blur-lg text-2xl'>
       <div className={`absolute left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent transition-all duration-300 ${scrolled ? "-bottom-12" : "-bottom-16"}`}></div>
       <div className='max-w-4xl flex items-center justify-between mx-auto px-12 relative'>
-        <div className='flex space-x-7 bg-nav-gradient-left bg-clip-text text-transparent'>
+        {/* Desktop Menu */}
+        <div className='hidden md:flex space-x-7 text-[0.9em]'>
           <NavLink text='Home' path='/' />
           <NavLink text='Concerts' path='/#concerts' />
         </div>
+
+        {/* Logo */}
         <div className='flex justify-center flex-1'>
           {!scrolled && (
             <Link href='/'>
-              <Image src='/images/Sistahh_Stern_All_gelb.png' alt='SISTAHH Logo' width={200} height={200} className='cursor-pointer' />
+              <Image src='/images/Sistahh_Stern_All_gelb.png' alt='SISTAHH Logo' width={200} height={200} className='cursor-pointer priority w-40 md:w-52 lg:w-64' />
             </Link>
           )}
           {scrolled && (
@@ -81,13 +98,51 @@ const Header = () => {
             </Link>
           )}
         </div>
-        <div className='flex space-x-7 bg-nav-gradient-right bg-clip-text text-transparent'>
-          <NavLink text='About' path='/#about' />
+
+        <div className='hidden md:flex space-x-7 text-[0.9em]'>
+          {/* bg-nav-gradient-right bg-clip-text text-transparent */}
+          <NavLink
+            id='about'
+            text='About'
+            path='/#about'
+            onClick={e => {
+              e.preventDefault()
+              scrollToSection() // Call scrollToSection here
+            }}
+          />
           <NavLink text='Contact' path='/contact' />
         </div>
+
+        {/* Burger Menu for Mobile */}
+        <div className='md:hidden'>
+          <button onClick={toggleMenu} className='absolute right-5 top-5 text-2xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent'>
+            <i className='fas fa-bars'></i>
+          </button>
+        </div>
       </div>
+
+      {/* Modal Menu */}
+      {isMenuOpen && (
+        <div className='fixed inset-0 z-30 bg-black flex flex-col items-center justify-center text-center h-screen'>
+          <button onClick={toggleMenu} className='absolute top-5 right-5 text-3xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent'>
+            <i className='fas fa-times'></i>
+          </button>
+          <nav className='flex flex-col space-y-5 text-2xl'>
+            <Link href='/' onClick={toggleMenu} className='hover:underline'>
+              Home
+            </Link>
+            <Link href='/#concerts' onClick={toggleMenu} className='hover:underline'>
+              Concerts
+            </Link>
+            <Link href='/#about' onClick={toggleMenu} className='hover:underline'>
+              About
+            </Link>
+            <Link href='/contact' onClick={toggleMenu} className='hover:underline'>
+              Contact
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
-
-export default Header

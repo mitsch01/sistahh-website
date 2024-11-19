@@ -37,7 +37,7 @@ export default function Carousel() {
   }
 
   return (
-    <div className='relative w-full cursor-pointer m-auto px-8'>
+    <section className='relative w-full cursor-pointer m-auto sm:px-8'>
       {/* Carousel images */}
       <div className='relative sm:h-[500px] h-96'>
         {images.map((image, index) => (
@@ -52,7 +52,7 @@ export default function Carousel() {
       </div>
 
       {/* Custom Previous Button */}
-      <button type='button' className='absolute top-0 left-8 z-5 flex items-center justify-center h-full px-4 cursor-pointer group' onClick={prevSlide}>
+      <button type='button' className='absolute top-0 left-0 sm:left-8 z-5 flex items-center justify-center h-full px-4 cursor-pointer group' onClick={prevSlide}>
         <span className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50'>
           <FaChevronLeft className='text-white' />
           <span className='sr-only'>Previous</span>
@@ -60,7 +60,7 @@ export default function Carousel() {
       </button>
 
       {/* Custom Next Button */}
-      <button type='button' className='absolute top-0 right-8 z-5 flex items-center justify-center h-full px-4 cursor-pointer group' onClick={nextSlide}>
+      <button type='button' className='absolute top-0 right-0 sm:right-8 z-5 flex items-center justify-center h-full px-4 cursor-pointer group' onClick={nextSlide}>
         <span className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50'>
           <FaChevronRight className='text-white' />
           <span className='sr-only'>Next</span>
@@ -76,6 +76,6 @@ export default function Carousel() {
 
       {/* Fullscreen Modal */}
       <FullScreenModal isOpen={isModalOpen} currentSlide={currentSlide} images={images} onClose={closeModal} onPrev={prevSlide} onNext={nextSlide} onGoToSlide={goToSlide} />
-    </div>
+    </section>
   )
 }

@@ -39,11 +39,12 @@ async function getConcerts() {
   }
 }
 
-export default function Page() {
+export default function Concerts() {
   const [upcomingConcerts, setUpcomingConcerts] = useState([])
   const [pastConcerts, setPastConcerts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [visiblePastCount, setVisiblePastCount] = useState(10) // Initially show 10 past concerts
 
   useEffect(() => {
     const fetchConcerts = async () => {
@@ -60,11 +61,15 @@ export default function Page() {
     fetchConcerts()
   }, [])
 
+  const loadMorePastConcerts = () => {
+    setVisiblePastCount(prevCount => prevCount + 10) // Increase the count by 10
+  }
+
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
 
   return (
-    <section id='concerts' className='pt-36 mx-8'>
+    <section id='concerts' className='pt-24 sm:pt-36 mx-8 mb-24'>
       {/* Upcoming Concerts Section */}
       <h1 className='text-4xl mb-12 font-bold text-center bg-heading-gradient bg-clip-text text-transparent'>Concerts</h1>
       <div className='mb-24 max-w-[860px] mx-auto text-left'>
@@ -97,7 +102,7 @@ export default function Page() {
                 </div>
 
                 {/* Column 2: City & Location */}
-                <div>
+                <div className='pr-[5px]'>
                   <p className='text-sm sm:text-base'>{concert.location}</p>
                   <p className='text-sm sm:text-base'>{concert.stadt}</p>
                 </div>
@@ -136,19 +141,31 @@ export default function Page() {
 
       {/* Past Concerts Section */}
       <h2 className='text-2xl mb-4 font-bold text-center text-[#666]'>Past Dates</h2>
-      <div className='mb-24 max-w-[860px] mx-auto text-left text-[#666]'>
+      <div className='max-w-[860px] mx-auto text-left text-[#666]'>
         {pastConcerts.length > 0 ? (
-          pastConcerts.map(concert => (
-            <div key={concert.id} className='flex justify-between items-center mb-4 py-2 border-b-[0.5px] border-[#666] '>
-              {/* Column 1: Date & Time */}
+          pastConcerts.slice(0, visiblePastCount).map(concert => (
+            <div key={concert.id} className='flex justify-between items-center mb-4 py-2 border-b-[0.5px] border-[#666]'>
+              {/* Column 1: Date */}
               <div className='flex-1'>
-                <p className='text-sm sm:text-base'>
-                  {new Date(concert.datum).toLocaleDateString("de-DE", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                  })}
+                <p>
+                  {/* Short format for mobile */}
+                  <span className='block sm:hidden text-sm'>
+                    {new Date(concert.datum).toLocaleDateString("de-DE", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric"
+                    })}
+                  </span>
+                  {/* Long format for larger devices */}
+                  <span className='hidden sm:block text-base'>
+                    {new Date(concert.datum).toLocaleDateString("de-DE", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric"
+                    })}
+                  </span>
                 </p>
               </div>
 
@@ -163,6 +180,15 @@ export default function Page() {
           <p className='text-center'>Die nächsten Konzerte sind schon in Planung.</p>
         )}
       </div>
+
+      {/* Load More Button */}
+      {visiblePastCount < pastConcerts.length && (
+        <div className='text-center'>
+          <button onClick={loadMorePastConcerts} className='bg-[#666] px-4 py-2 text-black rounded hover:bg-[#999]'>
+            Load More
+          </button>
+        </div>
+      )}
     </section>
   )
 }

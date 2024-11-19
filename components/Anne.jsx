@@ -33,7 +33,7 @@ export default function Anne() {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <section id='anne' className='pt-24 mb-16 mx-10'>
+    <section id='anne' className='-mt-8 sm:pt-12 mb-16 mx-10'>
       <h1 className='text-4xl mb-12 font-bold text-center bg-heading-gradient bg-clip-text text-transparent'>Unsere Oberschwester</h1>
       <div className='container grid grid-cols-1 md:grid-cols-2 gap-8'>
         <div className='left-column overflow-hidden'>

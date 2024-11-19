@@ -12,7 +12,7 @@ export default function SocialIcons() {
       </a>
 
       <a href='https://www.facebook.com/sistahh.ladiespopchoir'>
-        <i className='fa-brands fa-facebook-f text-white hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent'></i>
+        <i className='fa-brands fa-facebook-f text-white hover:scale-2'></i>
       </a>
     </div>
   )

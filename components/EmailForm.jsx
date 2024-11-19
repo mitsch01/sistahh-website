@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import emailjs from "emailjs-com"
-import Modal from "./Modal" 
+import Modal from "./Modal"
 
 export default function EmailForm() {
   const [name, setName] = useState("")
@@ -53,32 +53,32 @@ export default function EmailForm() {
           <label htmlFor='name' className='block text-sm font-medium text-gray-400'>
             Name
           </label>
-          <input type='text' id='name' name='name' value={name} onChange={e => setName(e.target.value)} required className='mt-1 block w-full p-2' />
+          <input type='text' id='name' name='from_name' value={name} onChange={e => setName(e.target.value)} required className='mt-1 block w-full p-2 border border-[#fff8b2]' />
         </div>
 
         <div className='pb-4'>
           <label htmlFor='email' className='block text-sm font-medium text-gray-400'>
             E-Mail
           </label>
-          <input type='email' id='email' name='email' value={email} onChange={e => setEmail(e.target.value)} required className='mt-1 block w-full p-2' />
+          <input type='email' id='email' name='from_email' value={email} onChange={e => setEmail(e.target.value)} required className='mt-1 block w-full p-2 border border-[#fff8b2]' />
         </div>
 
         <div className='pb-8'>
           <label htmlFor='message' className='block text-sm font-medium text-gray-400'>
             Nachricht
           </label>
-          <textarea id='message' name='message' rows='4' value={message} onChange={e => setMessage(e.target.value)} required className='mt-1 block w-full p-2' />
+          <textarea id='message' name='message' rows='4' value={message} onChange={e => setMessage(e.target.value)} required className='mt-1 block w-full p-2 border border-[#fff8b2]' />
         </div>
 
         <div className='flex justify-center'>
-          <button type='submit' className='bg-white px-4 py-2 text-black rounded hover:bg-button-gradient'>
+          <button type='submit' className='bg-white px-4 py-2 text-black rounded hover:bg-heading-gradient'>
             Absenden
           </button>
         </div>
       </form>
 
       {/* Modal Component */}
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} message={modalMessage} icon={modalIcon} />
+      <Modal isOpen={modalOpen} disableCloseOutsideClick={false} onClose={() => setModalOpen(false)} message={modalMessage} icon={modalIcon} />
     </>
   )
 }
