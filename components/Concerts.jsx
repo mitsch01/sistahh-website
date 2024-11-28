@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 async function getConcerts() {
-  const res = await fetch("http://localhost:1337/api/konzerttermine?populate=*")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/konzerttermine?populate=*`)
   const data = await res.json()
   console.log(data)
 

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 
 async function getImpressum() {
-  const res = await fetch("http://localhost:1337/api/impressum?populate=*")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/impressum?populate=*`)
   const data = await res.json()
 
   // Log the data structure for clarity

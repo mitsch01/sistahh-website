@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 
 async function getVideos() {
-  const res = await fetch("http://localhost:1337/api/videos?sort[0]=position:asc")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/videos?sort[0]=position:asc`)
   const data = await res.json()
 
   if (!data || !data.data) return []

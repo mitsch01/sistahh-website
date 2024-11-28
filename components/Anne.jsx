@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 async function getAnne() {
-  const res = await fetch("http://localhost:1337/api/anne")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/anne`)
   const data = await res.json()
 
   if (!data || !data.data) return []
