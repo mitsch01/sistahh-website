@@ -56,7 +56,7 @@ export default function Header() {
         <div className='flex justify-center flex-1'>
           {!scrolled && (
             <Link href='/'>
-              <Image src='/images/Sistahh_Stern_All_gelb.png' alt='SISTAHH Logo' width={200} height={200} className='cursor-pointer priority w-40 md:w-52 lg:w-64' />
+              <Image src='/images/Sistahh_Stern_All_gelb.png' alt='SISTAHH Logo' width={200} height={200} className='cursor-pointer priority w-40 md:w-52' />
             </Link>
           )}
           {scrolled && (

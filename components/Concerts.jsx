@@ -110,7 +110,7 @@ export default function Concerts() {
                 {/* Column 3: Ticket Button */}
                 <div className='flex items-center'>
                   {concert.link ? (
-                    <button className='bg-white px-4 py-2 text-black rounded hover:bg-button-gradient'>
+                    <button className='bg-white px-4 py-2 text-black rounded hover:bg-heading-gradient'>
                       <a href={concert.link} target='_blank' rel='noopener noreferrer'>
                         Tickets
                       </a>
@@ -125,14 +125,14 @@ export default function Concerts() {
         ) : (
           <div className='flex items-center flex-col text-center'>
             <p>
-              Weitere Konzerte sind in Planung – folgt uns auf{" "}
+              Weitere Konzerte sind bereits in Planung – folgt uns auf{" "}
               <a href='https://www.instagram.com/sista.hh/' target='_blank' rel='noopener noreferrer' className='underline'>
                 Instagram
               </a>
-              !{" "}
+              , um nichts zu verpassen!{" "}
             </p>
             <p>Wir sind ebenfalls offen für neue Gigs. Schreibt uns gern:</p>
-            <button className='bg-white px-4 py-2 mt-8 text-black rounded hover:bg-button-gradient'>
+            <button className='bg-white px-4 py-2 mt-8 text-black rounded hover:bg-heading-gradient'>
               <a href='/contact'>Anfrage senden</a>
             </button>
           </div>
