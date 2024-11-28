@@ -15,8 +15,7 @@ export default function Page() {
       <section className='flex justify-center items-center h-screen p-0 overflow-hidden'>
         <img src='/images/Sistah-Gruppenfoto_Prinzenbar.jpg' alt='SISTAHH Gruppenfoto Prinzenbar' className='w-full h-full object-cover priority' />
       </section>
-      <div className='relative bg-cover bg-center bg-custom-pattern'>
-        <div className='absolute inset-0 bg-black bg-opacity-80 backdrop-blur-lg'></div>
+        <div className='absolute inset-0'></div>
         <div className='relative z-5 m-auto max-w-[860px]'>
           <Concerts />
           <Carousel />
@@ -24,7 +23,6 @@ export default function Page() {
           {consentGiven && <Videos />}
           <Anne />
         </div>
-      </div>
     </div>
   )
 }

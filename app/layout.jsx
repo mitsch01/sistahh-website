@@ -54,22 +54,13 @@ const MainContent = ({ children }) => {
   };
 
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
-        <Modal
-          isOpen={isModalOpen}
-          disableCloseOutsideClick={true}
-          message="Wir nutzen nur notwendige Technologien auf dieser Website. Für YouTube setzen wir einen zusätzlichen Cookie. Einverstanden?"
-          icon="fas fa-cookie-bite"
-          acceptText="Logisch"
-          declineText="Ohne Videos"
-          handleAccept={handleAccept}
-          handleDecline={handleDecline}
-        />
+        <Modal isOpen={isModalOpen} disableCloseOutsideClick={true} message='Wir nutzen nur notwendige Technologien auf dieser Website. Für YouTube setzen wir einen zusätzlichen Cookie. Einverstanden?' icon='fas fa-cookie-bite' acceptText='Logisch' declineText='Ohne Videos' handleAccept={handleAccept} handleDecline={handleDecline} />
         <div className={`${isContentBlurred ? "backdrop-blur-lg" : ""}`}>
-          <div className="relative bg-custom-pattern bg-cover bg-center min-h-screen">
-            <div className="absolute inset-0 bg-black bg-opacity-90 backdrop-blur-lg"></div>
-            <div className="relative z-10 min-h-[100dvh] grid grid-rows-[auto_1fr_auto] text-white">
+          <div className='relative bg-custom-pattern bg-cover bg-center min-h-screen'>
+            <div className='absolute inset-0 bg-black bg-opacity-80 backdrop-blur-lg'></div>
+            <div className='relative z-10 min-h-[100dvh] grid grid-rows-[auto_1fr_auto] text-[#FFFFE0]'>
               <Header />
               <main>{children}</main>
               <Footer />
@@ -79,5 +70,5 @@ const MainContent = ({ children }) => {
         <SocialIcons />
       </body>
     </html>
-  );
+  )
 };

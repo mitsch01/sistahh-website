@@ -7,7 +7,7 @@ export default function Modal({ isOpen, onClose, message, icon, acceptText, decl
       onClose()
     }
   }
-  
+
   useEffect(() => {
     const handleEscape = e => {
       if (e.key === "Escape") {
@@ -31,7 +31,7 @@ export default function Modal({ isOpen, onClose, message, icon, acceptText, decl
         onClick={e => e.stopPropagation()} // Prevent closing the modal when clicked inside
       >
         <div className='flex items-center justify-center mb-4'>
-          <i className={`fa-3x ${icon} bg-heading-gradient bg-clip-text text-transparent`}></i>{" "}
+          <i className={`fa-3x ${icon} bg-button-icon-gradient bg-clip-text text-transparent`}></i>{" "}
         </div>
         <p className='text-center text-gray-700'>{message}</p>
 

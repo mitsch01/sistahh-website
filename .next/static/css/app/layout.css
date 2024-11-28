@@ -881,8 +881,8 @@ video {
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
 }
-.bg-opacity-90 {
-  --tw-bg-opacity: 0.9;
+.bg-button-icon-gradient {
+  background-image: linear-gradient(10deg,  #f2bd76 30%, #f2dd04 70%);
 }
 .bg-custom-pattern {
   background-image: url('/images/background.jpg');
@@ -892,9 +892,6 @@ video {
 }
 .bg-heading-gradient {
   background-image: linear-gradient(10deg, #fff8b2  45%, #fff8f8 50%, #fff8b2 70%, #fff8f8 70%);
-}
-.bg-nav-gradient-right {
-  background-image: linear-gradient(10deg, #fff  20%, #fff8b2 30%, #fff 50%, #f2bd76 75%);
 }
 .from-black {
   --tw-gradient-from: #000 var(--tw-gradient-from-position);
@@ -1030,6 +1027,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(102 102 102 / var(--tw-text-opacity));
 }
+.text-\[\#FFFFE0\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 224 / var(--tw-text-opacity));
+}
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -1162,6 +1163,10 @@ h1, h2, h3 {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-button-icon-gradient:hover {
+  background-image: linear-gradient(10deg,  #f2bd76 30%, #f2dd04 70%);
 }
 
 .hover\:bg-heading-gradient:hover {

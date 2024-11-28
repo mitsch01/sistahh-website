@@ -71,7 +71,7 @@ export default function EmailForm() {
         </div>
 
         <div className='flex justify-center'>
-          <button type='submit' className='bg-white px-4 py-2 text-black rounded hover:bg-heading-gradient'>
+          <button type='submit' className='bg-white px-4 py-2 text-black rounded hover:bg-button-icon-gradient'>
             Absenden
           </button>
         </div>

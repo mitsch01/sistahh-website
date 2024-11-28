@@ -43,7 +43,7 @@ export default function Header() {
   }
 
   return (
-    <header className='sticky top-0 z-20 bg-black backdrop-blur-lg text-2xl'>
+    <header className='sticky top-0 z-20 bg-black backdrop-blur-lg text-2xl text-white'>
       <div className={`absolute left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent transition-all duration-300 ${scrolled ? "-bottom-12" : "-bottom-16"}`}></div>
       <div className='lg:max-w-[796px] md:px-12 lg:px-0 flex items-center justify-between mx-auto relative'>
         {/* Desktop Menu */}
