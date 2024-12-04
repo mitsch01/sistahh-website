@@ -23,6 +23,7 @@ async function getConcerts() {
       time: concert.time,
       stadt: concert.stadt,
       location: concert.location,
+      titel: concert.titel,
       link: concert.ticketLink
     }
 
@@ -103,15 +104,16 @@ export default function Concerts() {
 
                 {/* Column 2: Title & Location & City */}
                 <div className='pr-[5px]'>
-                  <p className='text-sm sm:text-base'>{concert.titel} | </p>
-                  <p className='text-sm sm:text-base'>{concert.location}</p>
-                  <p className='text-sm sm:text-base'>{concert.stadt}</p>
+                  <p className='text-sm sm:text-base'>{concert.titel}</p>
+                  <p className='text-sm sm:text-base'>
+                    {concert.location}, {concert.stadt}
+                  </p>
                 </div>
 
                 {/* Column 3: Ticket Button */}
                 <div className='flex items-center'>
                   {concert.link ? (
-                    <button className='bg-white px-4 py-2 text-black rounded hover:bg-heading-gradient'>
+                    <button className='bg-white px-4 py-2 text-black rounded hover:bg-heading-gradient hover:scale-105 transition-transform duration-300'>
                       <a href={concert.link} target='_blank' rel='noopener noreferrer'>
                         Tickets
                       </a>
@@ -133,7 +135,7 @@ export default function Concerts() {
               , um nichts zu verpassen!{" "}
             </p>
             <p>Wir sind ebenfalls offen für neue Gigs. Schreibt uns gern:</p>
-            <button className='bg-white px-4 py-2 mt-8 text-black rounded hover:bg-heading-gradient'>
+            <button className='bg-white px-4 py-2 mt-8 text-black rounded hover:bg-button-icon-gradient hover:scale-105 transition-transform duration-300'>
               <a href='/contact'>Anfrage senden</a>
             </button>
           </div>
@@ -187,7 +189,7 @@ export default function Concerts() {
       {/* Load More Button */}
       {visiblePastCount < pastConcerts.length && (
         <div className='text-center'>
-          <button onClick={loadMorePastConcerts} className='bg-[#666] px-4 py-2 text-black rounded hover:bg-[#999]'>
+          <button onClick={loadMorePastConcerts} className='bg-[#666] px-4 py-2 text-black rounded hover:bg-[#999] hover:scale-105 transition-transform duration-300'>
             Load More
           </button>
         </div>

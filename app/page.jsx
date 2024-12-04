@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useConsent } from "../app/ConsentContext"
 import Concerts from "../components/Concerts"
 import Carousel from "../components/Carousel"
@@ -12,17 +13,18 @@ export default function Page() {
 
   return (
     <div>
-      <section className='flex justify-center items-center h-screen p-0 overflow-hidden'>
-        <img src='/images/Sistahh-Gruppenfoto_Prinzenbar.avif' alt='SISTAHH Gruppenfoto Prinzenbar' className='w-full h-full object-cover priority' />
+      {/* Hero Section */}
+      <section className='relative w-full h-screen overflow-hidden'>
+        <Image src='/images/Sistahh-Gruppenfoto_Prinzenbar.avif' alt='SISTAHH Gruppenfoto Prinzenbar' layout='fill' objectFit='cover' priority />
       </section>
-        <div className='absolute inset-0'></div>
-        <div className='relative z-5 m-auto max-w-[860px]'>
-          <Concerts />
-          <Carousel />
-          <About />
-          {consentGiven && <Videos />}
-          <Anne />
-        </div>
-    </div>
-  )
+
+      {/* Main Content */}
+      <div className='relative z-5 m-auto max-w-[860px]'>
+        <Concerts />
+        <Carousel />
+        <About />
+        {consentGiven && <Videos />}
+        <Anne />
+      </div>
+    </div>)
 }

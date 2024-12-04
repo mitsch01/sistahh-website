@@ -21,23 +21,30 @@ const MainContent = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentBlurred, setIsContentBlurred] = useState(false);
 
-    // Handle Cookie Modal
+  // Handle Cookie Modal
   useEffect(() => {
-    const userConsent = localStorage.getItem("cookieConsent");
+    try {
+      const userConsent = localStorage.getItem("cookieConsent")
 
-    if (userConsent === "true") {
-      setConsentGiven(true);
-      setIsModalOpen(false);
-      setIsContentBlurred(false);
-    } else if (userConsent === "false") {
-      setConsentGiven(false);
-      setIsModalOpen(false);
-      setIsContentBlurred(false);
-    } else {
-      setIsModalOpen(true); // Show modal for first-time users
-      setIsContentBlurred(true);
+      if (userConsent === "true") {
+        setConsentGiven(true)
+        setIsModalOpen(false)
+        setIsContentBlurred(false)
+      } else if (userConsent === "false") {
+        setConsentGiven(false)
+        setIsModalOpen(false)
+        setIsContentBlurred(false)
+      } else {
+        // For first-time users or if `userConsent` is `null`
+        setIsModalOpen(true)
+        setIsContentBlurred(true)
+      }
+    } catch (error) {
+      console.error("Error handling localStorage:", error)
+      setIsModalOpen(true) // Fail-safe: Show modal if there's an issue
+      setIsContentBlurred(true)
     }
-  }, [setConsentGiven]);
+  }, [setConsentGiven])
 
   const handleAccept = () => {
     localStorage.setItem("cookieConsent", "true");

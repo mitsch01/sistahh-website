@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Image from "next/image"
 import FullScreenModal from "./Gallery"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa" // Import FontAwesome icons
 
@@ -41,13 +42,13 @@ export default function Carousel() {
       {/* Carousel images */}
       <div className='relative sm:h-[500px] h-96'>
         {images.map((image, index) => (
-          <img
+          <div
             key={index}
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
+            className={`absolute w-full h-full transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
             onClick={() => openModal(index)} // Open modal when image is clicked
-          />
+          >
+            <Image src={image} alt={`Slide ${index + 1}`} fill className='object-cover' sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' />
+          </div>
         ))}
       </div>
 

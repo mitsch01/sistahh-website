@@ -39,12 +39,12 @@ export default function Modal({ isOpen, onClose, message, icon, acceptText, decl
         {(acceptText || declineText) && (
           <div className='flex justify-center space-x-4 mt-4'>
             {acceptText && (
-              <button className='bg-gray-800 hover:bg-gray-600 text-white px-8 py-2 rounded' onClick={handleAccept}>
+              <button className='bg-gray-800 hover:bg-gray-600 hover:scale-105 transition-transform duration-300 text-white px-8 py-2 rounded' onClick={handleAccept}>
                 {acceptText}
               </button>
             )}
             {declineText && (
-              <button className='bg-gray-800 hover:bg-gray-600 text-white px-4 py-2 rounded' onClick={handleDecline}>
+              <button className='bg-gray-800 hover:bg-gray-600 hover:scale-105 transition-transform duration-300 text-white px-4 py-2 rounded' onClick={handleDecline}>
                 {declineText}
               </button>
             )}

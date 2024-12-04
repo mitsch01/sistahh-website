@@ -94,7 +94,7 @@ export default function Header() {
 
         {/* Burger Menu for Mobile */}
         <div className='md:hidden'>
-          <button onClick={toggleMenu} className='absolute right-5 top-5 text-2xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent'>
+          <button onClick={toggleMenu} className='absolute right-5 top-5 text-2xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent hover:scale-105 transition-transform duration-300'>
             <i className='fas fa-bars'></i>
           </button>
         </div>
@@ -103,7 +103,7 @@ export default function Header() {
       {/* Modal Menu */}
       {isMenuOpen && (
         <div className='fixed inset-0 z-30 bg-black flex flex-col items-center justify-center text-center h-screen'>
-          <button onClick={toggleMenu} className='absolute top-5 right-5 text-3xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent'>
+          <button onClick={toggleMenu} className='absolute top-5 right-5 text-3xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent hover:scale-105 transition-transform duration-300'>
             <i className='fas fa-times'></i>
           </button>
           <nav className='flex flex-col space-y-5 text-2xl'>
