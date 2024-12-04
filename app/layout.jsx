@@ -60,7 +60,7 @@ const MainContent = ({ children }) => {
         <div className={`${isContentBlurred ? "backdrop-blur-lg" : ""}`}>
           <div className='relative bg-custom-pattern bg-cover bg-center min-h-screen'>
             <div className='absolute inset-0 bg-black bg-opacity-80 backdrop-blur-lg'></div>
-            <div className='relative z-10 min-h-[100dvh] grid grid-rows-[auto_1fr_auto] text-[#FFFFE0]'>
+            <div className='relative z-10 min-h-[100dvh] grid grid-rows-[auto_1fr_auto] text-white'>
               <Header />
               <main>{children}</main>
               <Footer />

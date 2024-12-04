@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa" // Import FontAwe
 
 export default function Carousel() {
   // Array of images
-  const images = ["/images/Sistah_Prinzenbar_1.jpg", "/images/Sistah_Prinzenbar_2.jpg", "/images/Sistah_Prinzenbar_3.jpg", "/images/Sistah_Prinzenbar_4.jpg", "/images/Sistah_Prinzenbar_5.jpg", "/images/Sistah_Prinzenbar_6.jpg", "/images/Sistah_Prinzenbar_7.jpg", "/images/Sistah_Prinzenbar_8.jpg", "/images/Sistah_Prinzenbar_9.jpg", "/images/Sistah_Prinzenbar_10.jpg", "/images/Sistah_Prinzenbar_11.jpg", "/images/Sistah_Prinzenbar_12.jpg"]
+  const images = ["/images/Sistahh_Prinzenbar_1.avif", "/images/Sistahh_Prinzenbar_2.avif", "/images/Sistahh_Prinzenbar_3.avif", "/images/Sistahh_Prinzenbar_4.avif", "/images/Sistahh_Prinzenbar_5.avif", "/images/Sistahh_Prinzenbar_6.avif", "/images/Sistahh_Prinzenbar_7.avif", "/images/Sistahh_Prinzenbar_8.avif", "/images/Sistahh_Prinzenbar_9.avif", "/images/Sistahh_Prinzenbar_10.avif", "/images/Sistahh_Prinzenbar_11.avif", "/images/Sistahh_Prinzenbar_12.avif"]
 
   // State for current slide
   const [currentSlide, setCurrentSlide] = useState(0)

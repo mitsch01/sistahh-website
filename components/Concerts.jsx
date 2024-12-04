@@ -101,8 +101,9 @@ export default function Concerts() {
                   </p>
                 </div>
 
-                {/* Column 2: City & Location */}
+                {/* Column 2: Title & Location & City */}
                 <div className='pr-[5px]'>
+                  <p className='text-sm sm:text-base'>{concert.titel} | </p>
                   <p className='text-sm sm:text-base'>{concert.location}</p>
                   <p className='text-sm sm:text-base'>{concert.stadt}</p>
                 </div>
@@ -169,10 +170,12 @@ export default function Concerts() {
                 </p>
               </div>
 
-              {/* Column 2: City & Location */}
+              {/* Column 2: Title & Location & City */}
               <div className='flex-1 text-right'>
-                <p className='text-sm sm:text-base'>{concert.location}</p>
-                <p className='text-sm sm:text-base'>{concert.stadt}</p>
+                <p className='text-sm sm:text-base'>{concert.titel}</p>
+                <p className='text-sm sm:text-base'>
+                  {concert.location}, {concert.stadt}
+                </p>
               </div>
             </div>
           ))

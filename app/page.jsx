@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <div>
       <section className='flex justify-center items-center h-screen p-0 overflow-hidden'>
-        <img src='/images/Sistah-Gruppenfoto_Prinzenbar.jpg' alt='SISTAHH Gruppenfoto Prinzenbar' className='w-full h-full object-cover priority' />
+        <img src='/images/Sistahh-Gruppenfoto_Prinzenbar.avif' alt='SISTAHH Gruppenfoto Prinzenbar' className='w-full h-full object-cover priority' />
       </section>
         <div className='absolute inset-0'></div>
         <div className='relative z-5 m-auto max-w-[860px]'>

@@ -86,7 +86,7 @@ export default function Page() {
       </section>
 
       <footer className='mb-8 sm:mb-12'>
-        <p className=' text-[0.8em]'>Stand: 25.05.2018</p>
+        <p className=' text-[0.8em]'>Stand: 04.12.2024</p>
       </footer>
     </div>
   )

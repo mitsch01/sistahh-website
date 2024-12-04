@@ -885,7 +885,7 @@ video {
   background-image: linear-gradient(10deg,  #f2bd76 30%, #f2dd04 70%);
 }
 .bg-custom-pattern {
-  background-image: url('/images/background.jpg');
+  background-image: url('/images/background.avif');
 }
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -1026,10 +1026,6 @@ video {
 .text-\[\#666\] {
   --tw-text-opacity: 1;
   color: rgb(102 102 102 / var(--tw-text-opacity));
-}
-.text-\[\#FFFFE0\] {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 224 / var(--tw-text-opacity));
 }
 .text-black {
   --tw-text-opacity: 1;
