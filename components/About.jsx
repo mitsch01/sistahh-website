@@ -26,7 +26,10 @@ export default function About() {
         setLoading(false)
       }
     }
-    fetchAbout()
+    // Only fetch data after the initial render
+    setTimeout(() => {
+      fetchAbout()
+    }, 100) // Slight delay to improve perceived load time
   }, [])
 
   if (loading) return <div>Loading...</div>

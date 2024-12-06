@@ -32,9 +32,12 @@ export default function Anne() {
       }
     }
 
+    // Only fetch data after the initial render
+    setTimeout(() => {
     fetchAnne()
+    }, 100) // Slight delay to improve perceived load time
   }, [])
-
+  
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
 

@@ -59,7 +59,10 @@ export default function Concerts() {
         setLoading(false)
       }
     }
-    fetchConcerts()
+    // Only fetch data after the initial render
+    setTimeout(() => {
+      fetchConcerts()
+    }, 100) // Slight delay to improve perceived load time
   }, [])
 
   const loadMorePastConcerts = () => {

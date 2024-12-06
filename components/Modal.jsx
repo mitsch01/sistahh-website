@@ -2,12 +2,14 @@ import React, { useEffect } from "react"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 
 export default function Modal({ isOpen, onClose, message, icon, acceptText, declineText, handleAccept, handleDecline, disableCloseOutsideClick = false }) {
+  // Handle overlay click to close modal, respecting the disableCloseOutsideClick prop
   const handleOverlayClick = e => {
     if (!disableCloseOutsideClick && onClose) {
       onClose()
     }
   }
 
+  // Listen for the "Escape" key to close modal
   useEffect(() => {
     const handleEscape = e => {
       if (e.key === "Escape") {
@@ -22,10 +24,32 @@ export default function Modal({ isOpen, onClose, message, icon, acceptText, decl
     }
   }, [onClose])
 
+  // Handle touchstart for better mobile support
+  useEffect(() => {
+    const handleTouchStart = e => {
+      if (!disableCloseOutsideClick && onClose) {
+        onClose()
+      }
+    }
+
+    if (!disableCloseOutsideClick) {
+      document.addEventListener("touchstart", handleTouchStart)
+    }
+
+    return () => {
+      if (!disableCloseOutsideClick) {
+        document.removeEventListener("touchstart", handleTouchStart)
+      }
+    }
+  }, [onClose, disableCloseOutsideClick])
+
   if (!isOpen) return null
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50' onClick={handleOverlayClick}>
+    <div
+      className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50'
+      onClick={handleOverlayClick} // Close modal if clicking outside
+    >
       <div
         className='bg-white rounded-md p-6 w-5/6 sm:w-1/2 max-w-96'
         onClick={e => e.stopPropagation()} // Prevent closing the modal when clicked inside

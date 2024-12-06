@@ -26,5 +26,6 @@ export default function Page() {
         {consentGiven && <Videos />}
         <Anne />
       </div>
-    </div>)
+    </div>
+  )
 }

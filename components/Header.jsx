@@ -108,16 +108,16 @@ export default function Header() {
           </button>
           <nav className='flex flex-col space-y-5 text-2xl'>
             <Link href='/' onClick={toggleMenu} className='hover:underline'>
-              Home
+              HOME
             </Link>
             <Link href='/#concerts' onClick={toggleMenu} className='hover:underline'>
-              Concerts
+              CONCERT
             </Link>
             <Link href='/#about' onClick={toggleMenu} className='hover:underline'>
-              About
+              ABOUT
             </Link>
             <Link href='/contact' onClick={toggleMenu} className='hover:underline'>
-              Contact
+              CONTACT
             </Link>
           </nav>
         </div>

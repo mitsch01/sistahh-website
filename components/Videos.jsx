@@ -32,7 +32,10 @@ export default function Videos() {
         setLoading(false)
       }
     }
-    fetchVideos()
+    // Only fetch data after the initial render
+    setTimeout(() => {
+      fetchVideos()
+    }, 100) // Slight delay to improve perceived load time
   }, [])
 
   if (loading) return <div>Loading...</div>
@@ -41,7 +44,7 @@ export default function Videos() {
   return (
     <section id='videos' className='group overflow-hidden m-8 pb-20'>
       {videoContent.map(video => (
-        <div key={video.id} className="sm:mb-8">
+        <div key={video.id} className='sm:mb-8'>
           <iframe src={video.link} title={video.title} className='transition duration-500 w-full h-56 sm:h-64 hover:scale-105' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen />
         </div>
       ))}

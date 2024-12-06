@@ -45,7 +45,10 @@ export default function Impressum() {
         setLoading(false)
       }
     }
-    fetchImpressum()
+    // Only fetch data after the initial render
+    setTimeout(() => {
+      fetchImpressum()
+    }, 100) // Slight delay to improve perceived load time
   }, [])
 
   if (loading) return <div>Loading...</div>
