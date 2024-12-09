@@ -42,14 +42,40 @@ export default function Header() {
     setIsMenuOpen(prev => !prev)
   }
 
+  // Function to scroll to the section when a menu item is clicked
+  const scrollToSection = id => {
+    const section = document.getElementById(id)
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <header className='sticky top-0 z-20 bg-black backdrop-blur-lg text-2xl text-white'>
-      <div className={`absolute left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent transition-all duration-300 ${scrolled ? "-bottom-12" : "-bottom-16"}`}></div>
+      <div className={`absolute left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent transition-all duration-300 ${scrolled ? "-bottom-16" : "-bottom-16"}`}></div>
       <div className='lg:max-w-[796px] md:px-12 lg:px-0 flex items-center justify-between mx-auto relative'>
         {/* Desktop Menu */}
         <div className='hidden md:flex space-x-7 text-[0.9em]'>
-          <NavLink text='Home' path='/' />
-          <NavLink text='Concerts' path='/#concerts' />
+          <NavLink
+            id='home'
+            text='HOME'
+            path='/'
+            onClick={e => {
+              e.preventDefault()
+              console.log("Home link clicked!")
+              scrollToSection("home") // Scroll to the home section
+            }}
+          />
+          <NavLink
+            id='concerts'
+            text='CONCERTS'
+            path='/#concerts'
+            onClick={e => {
+              e.preventDefault()
+              console.log("Concert link clicked!")
+              scrollToSection("concerts") // Scroll to the concerts section
+            }}
+          />
         </div>
 
         {/* Logo */}
@@ -78,18 +104,26 @@ export default function Header() {
         </div>
 
         <div className='hidden md:flex space-x-7 text-[0.9em]'>
-          {/* bg-nav-gradient-right bg-clip-text text-transparent */}
           <NavLink
             id='about'
-            text='About'
+            text='ABOUT'
             path='/#about'
             onClick={e => {
               e.preventDefault()
               console.log("About link clicked!")
-              scrollToSection() // Call scrollToSection here
+              scrollToSection("about") // Scroll to the about section
             }}
           />
-          <NavLink text='Contact' path='/contact' />
+          <NavLink
+            id='contact'
+            text='CONTACT'
+            path='/#contact'
+            onClick={e => {
+              e.preventDefault()
+              console.log("Contact link clicked!")
+              scrollToSection("contact") // Scroll to the contact section
+            }}
+          />
         </div>
 
         {/* Burger Menu for Mobile */}
@@ -102,8 +136,8 @@ export default function Header() {
 
       {/* Modal Menu */}
       {isMenuOpen && (
-        <div className='fixed inset-0 z-30 bg-black flex flex-col items-center justify-center text-center h-screen'>
-          <button onClick={toggleMenu} className='absolute top-5 right-5 text-3xl focus:outline-none hover:bg-heading-gradient hover:bg-clip-text hover:text-transparent hover:scale-105 transition-transform duration-300'>
+        <div className='fixed inset-0 z-30 bg-black bg-opacity-80 bg-bl flex flex-col items-center justify-center text-center h-screen'>
+          <button onClick={toggleMenu} className='absolute top-5 right-5 text-3xl focus:outline-none hover:scale-110 transition-transform duration-300'>
             <i className='fas fa-times'></i>
           </button>
           <nav className='flex flex-col space-y-5 text-2xl'>
@@ -116,7 +150,7 @@ export default function Header() {
             <Link href='/#about' onClick={toggleMenu} className='hover:underline'>
               ABOUT
             </Link>
-            <Link href='/contact' onClick={toggleMenu} className='hover:underline'>
+            <Link href='/#contact' onClick={toggleMenu} className='hover:underline'>
               CONTACT
             </Link>
           </nav>

@@ -7,6 +7,7 @@ import Carousel from "../components/Carousel"
 import About from "../components/About"
 import Videos from "../components/Videos"
 import Anne from "../components/Anne"
+import Contact from "../components/Contact"
 
 export default function Page() {
   const { consentGiven } = useConsent()
@@ -19,13 +20,14 @@ export default function Page() {
       </section>
 
       {/* Main Content */}
-      <div className='relative z-5 m-auto max-w-[860px]'>
+      <section id="home" className='relative z-5 m-auto max-w-[860px]'>
         <Concerts />
         <Carousel />
         <About />
         {consentGiven && <Videos />}
         <Anne />
-      </div>
+        <Contact />
+      </section>
     </div>
   )
 }

@@ -45,7 +45,7 @@ export default function Concerts() {
   const [pastConcerts, setPastConcerts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [visiblePastCount, setVisiblePastCount] = useState(10) // Initially show 10 past concerts
+  const [visiblePastCount, setVisiblePastCount] = useState(5) // Initially show 5 past concerts
 
   useEffect(() => {
     const fetchConcerts = async () => {
@@ -139,7 +139,7 @@ export default function Concerts() {
             </p>
             <p>Wir sind ebenfalls offen für neue Gigs. Schreibt uns gern:</p>
             <button className='bg-white px-4 py-2 mt-8 text-black rounded hover:bg-button-icon-gradient hover:scale-105 transition-transform duration-300'>
-              <a href='/contact'>Anfrage senden</a>
+              <a href='/#contact'>Anfrage senden</a>
             </button>
           </div>
         )}
