@@ -47,13 +47,7 @@ export default function Anne() {
       <div className='container grid grid-cols-1 md:grid-cols-2 gap-8'>
         {/* Left Column: Image */}
         <div className='left-column overflow-hidden'>
-          <Image
-            src='/images/Anne_Prinzenbar.avif'
-            alt='Anne'
-            width={500} // Specify width for better optimization
-            height={500} // Specify height for better optimization
-            className='image w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110 hover:-rotate-3'
-          />
+          <Image src='/images/Anne_Prinzenbar.avif' alt='Anne' width={500} height={500} className='image w-full h-full object-cover mask-image-mask blur-edges transition-transform duration-300 ease-in-out hover:scale-110 hover:-rotate-2' />
         </div>
 
         {/* Right Column: Text Content */}

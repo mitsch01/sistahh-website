@@ -10,6 +10,7 @@ export default function Header() {
   const [isScrolling, setIsScrolling] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +40,15 @@ export default function Header() {
   }, [lastScrollY, isScrolling])
 
   const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev)
+    if (isMenuOpen) {
+      setIsClosing(true) // Start the closing animation
+      setTimeout(() => {
+        setIsMenuOpen(false) // Unmount the modal after animation
+        setIsClosing(false) // Reset the closing state
+      }, 300) // Match the animation duration
+    } else {
+      setIsMenuOpen(true)
+    }
   }
 
   // Function to scroll to the section when a menu item is clicked
@@ -136,7 +145,12 @@ export default function Header() {
 
       {/* Modal Menu */}
       {isMenuOpen && (
-        <div className='fixed inset-0 z-30 bg-black bg-opacity-80 bg-bl flex flex-col items-center justify-center text-center h-screen'>
+        <div
+          className={`fixed inset-0 z-30 flex flex-col items-center justify-center text-center h-screen transition-all duration-300 ease-in-out ${
+            isClosing
+              ? "opacity-0 translate-y-[-20px]"
+              : "opacity-100 translate-y-0"
+          } backdrop-blur-sm bg-black/90`}>
           <button onClick={toggleMenu} className='absolute top-5 right-5 text-3xl focus:outline-none hover:scale-110 transition-transform duration-300'>
             <i className='fas fa-times'></i>
           </button>

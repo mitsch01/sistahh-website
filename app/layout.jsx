@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Head from "next/head"
 import { useConsent, ConsentProvider } from "../app/ConsentContext";
 import "./globals.css";
 import Modal from "../components/Modal";
@@ -62,6 +63,19 @@ const MainContent = ({ children }) => {
 
   return (
     <html lang='en'>
+      <Head>
+        {/* Favicon */}
+        <link rel='icon' href='/favicon.ico' />
+        <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+        <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+        <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+        {/* Social Media Preview */}
+        <meta property='og:title' content='SISTAHH – Ladies Popchor Hamburg' />
+        <meta property='og:description' content='Wir sind SISTAHH, ein Popchor aus Hamburg, bekannt für unseren mitreißenden Sound und die facettenreichen Arrangements unserer Chorleiterin Anne Niemann. Mit einer einzigartigen Mischung aus Soul, Pop und Jazz begeistern wir unser Publikum immer wieder aufs Neue.' />
+        <meta property='og:image' content='/og-image.jpg' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://sistahh.de' />
+      </Head>
       <body>
         <Modal isOpen={isModalOpen} disableCloseOutsideClick={true} message='Wir nutzen nur notwendige Technologien auf dieser Website. Für YouTube setzen wir einen zusätzlichen Cookie. Einverstanden?' icon='fas fa-cookie-bite' acceptText='Logisch' declineText='Ohne Videos' handleAccept={handleAccept} handleDecline={handleDecline} />
         <div className={`${isContentBlurred ? "backdrop-blur-lg" : ""}`}>
