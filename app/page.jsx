@@ -16,11 +16,11 @@ export default function Page() {
     <div>
       {/* Hero Section */}
       <section className='relative w-full h-screen overflow-hidden'>
-        <Image src='/images/Sistahh-Gruppenfoto_Prinzenbar.avif' alt='SISTAHH Gruppenfoto Prinzenbar' layout='fill' objectFit='cover' priority />
+        <Image src='/images/Sistahh-Gruppenfoto_Prinzenbar.avif' alt='SISTAHH Gruppenfoto Prinzenbar' fill style={{ objectFit: "cover" }} priority />
       </section>
 
       {/* Main Content */}
-      <section id="home" className='relative z-5 m-auto max-w-[860px]'>
+      <section id='home' className='relative z-5 m-auto max-w-[860px]'>
         <Concerts />
         <Carousel />
         <About />
