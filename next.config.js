@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: "/admin/:path*",
-        destination: "https://sistahh.de/:path*" 
+        destination: "https://api.sistahh.de/:path*" 
       }
     ]
   }
